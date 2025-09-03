@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - ПРОсто</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Общие стили */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #4682b4;
+            color: white;
+            height: 70px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .log_img {
+            height: 52px;
+            width: 52px;
+            margin-right: 10px;
+        }
+
+        .logo {
+            margin-top: 15px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+        }
+
+        .register-button {
+            background: white;
+            color: #4682b4;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            width: 230px;
+            height: 45px;
+        }
+
+        .register-button:hover {
+            background-color: #315f7a;
+            color: white;
+        }
+
+
+        .content1{
+            margin-left: 20px;
+
+        }
+
+        .content {
+            max-width: 600px;
+            margin: 0 auto; /* Убираем верхний и нижний отступ */
+        }
+
+        .content h1 {
+            font-size: 2.5em;
+            color: #4682b4;
+            margin-bottom: 10px;
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+
+        }
+
+        .content p {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 300px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .contact-form button {
+            background-color: #4682b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #315f7a;
+        }
+
+        footer {
+            background-color: #4682b4;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="image/earth.png" class="log_img" alt="Логотип">
+            <div class="logo">ПРОсто</div>
+        </div>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="about.html">О нас</a>
+            <a href="courses.html">Курсы</a>
+            <a href="reviews.html">Отзывы</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+        <button class="register-button" onclick="openModal()">Зарегистрироваться</button>
+    </header>
+
+    <main class="content">
+        <h1>Контакты</h1>
+        <p>Свяжитесь с нами для получения дополнительной информации о курсах или для консультации.</p>
+
+        <div id="map"></div>
+    </main>
+
+    <main class="content1">
+        <h2>Форма обратной связи</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Ваше имя">
+            <input type="email" placeholder="Ваш email">
+            <textarea placeholder="Ваше сообщение"></textarea>
+            <button type="submit">Отправить</button>
+        </form>
+    </main>
+
+    <footer>
+        &copy; 2025 ПРОсто. Все права защищены.
+    </footer>
+
+        <!-- *** Заменяем Google Maps на Яндекс.Карты *** -->
+        <script src="https://api-maps.yandex.ru/2.1/?apikey=ab8d3fa0-1459-47cb-9e46-4d91e7f31422&lang=ru_RU" type="text/javascript"></script>
+        <script>
+            ymaps.ready(function () {
+                var map = new ymaps.Map("map", {
+                    center: [55.749803, 37.535242], // Москва
+                    zoom: 12
+                });
+    
+                var placemark = new ymaps.Placemark([55.749803, 37.535242], {
+                    hintContent: "Мы здесь!",
+                    balloonContent: "Наш офис в Москве"
+                });
+    
+                map.geoObjects.add(placemark);
+            });
+        </script>
+    
+</body>
+</html>

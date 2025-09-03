@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПРОсто - Подготовка к экзаменам</title>
+    <link rel="icon" href="image/earth-2.png" type="image/png">
+    <style>
+        /* Общие стили */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+        }
+
+        /* Шапка */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #4682b4;
+            color: white;
+            height: 70px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .log_img {
+            height: 52px;
+            width: 52px;
+            margin-right: 10px;
+        }
+
+
+        .logo {
+            margin-top: 15px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+        }
+
+        /* Кнопка регистрации */
+        .register-button {
+            background: white;
+            color: #4682b4;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            width: 230px;
+            height: 45px;
+        }
+
+        .register-button:hover {
+            background-color: #315f7a;
+            color: white;
+        }
+
+        /* Главный блок */
+        .hero {
+            text-align: center;
+            padding: 70px 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            color: #4682b4;
+        }
+
+        .hero p {
+            margin-top: 25px;
+            font-size: 1.2em;
+        }
+
+        .hero button {
+            margin-top: 25px;
+            font-size: 1.5em;
+            color: #4682b4;
+            background: #fff;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .hero button:hover {
+            background-color: #4682b4;
+            color: white;
+        }
+
+        /* Промо-слайдер */
+        .promo-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .promo-item {
+            min-width: 300px;
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius:12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .promo-item:hover {
+            transform: translateY(-5px); /* Эффект подъема при наведении */
+        }
+
+        .promo-item h3 {
+            color: #4682b4;
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .promo-item p {
+            font-size: 1.1em;
+        }
+
+        /* Модальное окно */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 350px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal input {
+            width: calc(100% - 20px);
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        .register-btn, .login-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4682b4;
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .register-btn:hover, .login-btn:hover {
+            background-color: #315f7a;
+        }
+
+        .modal p {
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        .modal a {
+            color: #4682b4;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal a:hover {
+            text-decoration: underline;
+        }
+
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #4682b4;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        /* Секция "Как это работает?" */
+        .how-it-works {
+            background-color: #f0f8ff; /* Светлый фон */
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 2.5em;
+            color: #4682b4;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        /* Контейнер для шагов */
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap; /* Позволяет адаптироваться на маленьких экранах */
+        }
+
+        /* Каждый шаг */
+        .step-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 280px; /* Фиксированная ширина */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .step-item:hover {
+            transform: translateY(-5px); /* Эффект подъема при наведении */
+        }
+
+        /* Иконки (изображения) */
+        .step-item img {
+            width: 80px; /* Размер иконки */
+            height: 80px;
+            margin-bottom: 15px;
+        }
+
+        /* Заголовок каждого шага */
+        .step-item h3 {
+            font-size: 1.5em;
+            color: #4682b4;
+            margin-bottom: 10px;
+        }
+
+        /* Текст */
+        .step-item p {
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        /* Подвал */
+        footer {
+            background-color: #4682b4;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="image/earth.png" class="log_img" alt="Логотип">
+            <div class="logo">ПРОсто</div>
+        </div>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="about.html">О нас</a>
+            <a href="courses.html">Курсы</a>
+            <a href="reviews.html">Отзывы</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+        <button class="register-button" onclick="openModal()">Зарегистрироваться</button>
+    </header>
+
+    <section class="hero">
+        <h1>Подготовьтесь к экзаменам с ПРОсто!</h1>
+        <p>Мы предлагаем курсы для подготовки к экзаменам, с лучшими преподавателями и современными методиками.</p>
+        <button onclick="window.location.href='courses.html'">Записаться на курс</button>
+    </section>
+
+    <section class="promo-slider">
+        <div class="promo-item">
+            <h3>Наши курсы📚</h3>
+            <p>Мы предлагаем современные образовательные курсы. Готовьтесь к экзаменам, углубленно изучайте предметы и развивайте навыки с помощью видеоуроков, живых вебинаров и очных занятий с преподавателями. Выбирайте удобный способ обучения и достигайте высоких результатов!</p>
+        </div>
+        <div class="promo-item">
+            <h3>Преподаватели👩‍🏫</h3>
+            <p>Наша команда — это опытные педагоги и эксперты, которые знают, как объяснять сложные темы простым языком. Каждый преподаватель проходит строгий отбор, чтобы гарантировать высокое качество обучения. Вы получите не только знания, но и поддержку на каждом этапе.</p>
+        </div>
+        <div class="promo-item">
+            <h3>Технологии🤖</h3>
+            <p>Мы используем современные технологии, чтобы обучение было удобным и эффективным. Искусственный интеллект для персонализированных рекомендаций, интерактивные тренажеры для практики и адаптивные программы помогут вам учиться с максимальной пользой.</p>
+        </div>
+    </section>
+    <section class="how-it-works">
+        <h2>Как это работает?</h2>
+        <div class="steps-container">
+            <div class="step-item">
+                <img src="image/choice.png" alt="Выберите курс">
+                <h3>Выберите курс</h3>
+                <p>Определитесь с направлением и запишитесь на пробное занятие.</p>
+            </div>
+            <div class="step-item">
+                <img src="image/webinar.png" alt="Проходите уроки">
+                <h3>Проходите уроки</h3>
+                <p>Занимайтесь с преподавателем в удобное время.</p>
+            </div>
+            <div class="step-item">
+                <img src="image/exam.png" alt="Сдайте экзамен">
+                <h3>Сдайте экзамен</h3>
+                <p>Применяйте знания на практике и добивайтесь успеха!</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Подвал -->
+    <footer>
+        &copy; 2025 ПРОсто. Все права защищены.
+    </footer>
+
+    
+
+    <div class="overlay" id="registerModal">
+        <div class="modal">
+            <button class="close" onclick="closeModal('registerModal')">&times;</button>
+            <h2>Регистрация</h2>
+            <input type="text" placeholder="Имя">
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Пароль">
+            <button class="register-btn">Зарегистрироваться</button>
+            <p>Уже есть аккаунт? <a href="#" onclick="openModal('loginModal')">Войти</a></p>
+        </div>
+    </div>
+
+    <div class="overlay" id="loginModal">
+        <div class="modal">
+            <button class="close" onclick="closeModal('loginModal')">&times;</button>
+            <h2>Вход</h2>
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Пароль">
+            <button class="login-btn">Войти</button>
+            <p>Нет аккаунта? <a href="#" onclick="openModal('registerModal')">Зарегистрироваться</a></p>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            // Закрываем все модальные окна перед открытием нужного
+            document.getElementById('registerModal').style.display = 'none';
+            document.getElementById('loginModal').style.display = 'none';
+    
+            // Открываем нужное окно
+            document.getElementById(id).style.display = 'flex';
+        }
+    
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+    
+        // Добавляем обработчики событий после загрузки страницы
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector(".register-button").addEventListener("click", function () {
+                openModal('registerModal');
+            });
+    
+            document.querySelector("#loginModal a").addEventListener("click", function (event) {
+                event.preventDefault(); // Предотвращаем переход по ссылке
+                openModal('registerModal');
+            });
+    
+            document.querySelector("#registerModal a").addEventListener("click", function (event) {
+                event.preventDefault();
+                openModal('loginModal');
+            });
+        });
+    </script>
+    
+    
+</body>
+</html>
